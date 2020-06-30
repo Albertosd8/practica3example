@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+</head>
+  
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item"> <!-- Registrate --> 
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#registerModalId">Registrarte <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active"> <!-- Login -->
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLoginId">Login <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="consultas.html">Administrador de usuarios</a>
+                </li>  
+            </ul>
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="display-3">DASW-Práctica 1</h1>
+        <p class="lead">Crear un interface para registro de usuarios</p>
+        <hr class="my-2">
+        <ol>
+            <li>Login</li>
+            <li>Registro</li>
+            <li>Consultas</li>
+        </ol>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/consultas.html" role="button">Ir a administrador de usuarios</a>
+        </p>
+    </div>
+    
+    <!-- Modal Login -->
+    <div class="modal fade" id="modalLoginId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body"> 
+                    <form id="form-login">
+                        <p style="margin-bottom: 7px;">Correo</p>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span> 
+                            </div>  
+                            <label for="email_r"></label>
+                            <input type="text" id="email_r" class="form-control" placeholder="Correo registrado" aria-label="Correo" aria-describedby="helpId" required>
+                        </div>        
+                            <p style="margin-bottom: 7px; margin-top: 7px;">Password</p>
+                        <div class="input-group" style="margin-bottom: 10px;">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span> 
+                            </div>  
+                            <label for="password_r"></label>
+                            <input type="password" id="password_r" class="form-control" placeholder="Contraseña" aria-label="password" aria-describedby="helpId" required>
+                        </div>     
+                        <!-- <button class="btn btn-primary" type="submit">submit</button>  --> 
+                    </form> 
+                </div>
+                <div class="modal-footer flex-column">
+                        <div class="w-100 d-flex justify-content-end">
+                            <div> <!-- usando el div para conservar el espacio entre botones -->
+                                <button onclick="searching_users()" type="button" class="btn btn-secondary ml-3" data-dismiss="modal">Cancelar</button>
+                                <button onclick="login()" type="submit" class="btn btn-primary" form="form-login">Entrar</button>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-2">
+                            <div class="border-top border-dark">
+                                <div class="mt-4 d-flex justify-content-end">
+                                    <p>No tienes cuenta! <a href="#" data-toggle="modal" data-target="#registerModalId" data-dismiss="modal">Registrate aquí</a></p>
+                                </div>
+                            </div>
+                        </div>
+                </div> <!-- modal footer end bracket mark -->
+            </div> <!-- modal content end bracket mark -->
+        </div>
+    </div> <!-- modal Login, end bracket mark -->
+
+    <!-- Button trigger modal -->
+    
+    <!-- Modal Register -->
+    <div class="modal fade" id="registerModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear cuenta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                        <form id="register_form">
+                            <div class="row">
+                                <div class="col-6"> <!-- name -->
+                                    <label for="name"></label>
+                                    <input type="text" class="form-control" placeholder="Nombre o nombres" required>
+                                </div>
+                                <div class="col-6"> <!-- lastname -->
+                                    <label for="lastname"></label>
+                                    <input type="text" class="form-control" placeholder="Apellidos" required>
+                                </div>
+                            </div>
+                            <!-- email  -->
+                            <label for="email"></label>
+                            <input type="email" class="form-control" placeholder="Tu correo" id="email" required>
+                            <!-- password  -->
+                            <label for="password"></label>
+                            <input type="password" class="form-control" placeholder="Contraseña" required>
+                            <!-- Confirm password  -->
+                            <label for="confirm_password"></label>
+                            <input type="password" class="form-control" placeholder="Confirmar contraseña" required>
+                            <!-- Date  -->
+                            <label for="date"></label>
+                            <input type="date"  class="form-control" placeholder="01/01/2000"required>
+                            <!-- Gender -->
+                            <div class="card mt-3">
+                                <div class="card-body p-2">
+                                    <input type="radio" value="H" name="answer_gender"> Hombre <br>
+                                    <input type="radio" value="M" name="answer_gender"> Mujer <br>
+                                </div>
+                            </div>
+                            <!-- Image url  -->
+                            <label for="img_pic"></label>
+                            <input type="url"  class="form-control" placeholder="url de la imagen de perfil" required>
+                        </form>
+                </div> <!-- modal body end bracket -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button onclick="registrar()" id="button_register_h" type="submit" class="btn btn-primary" form="register_form" disabled >Registrarse</button>
+                </div>  <!-- modal footer end bracket mark -->
+            </div>
+        </div>
+    </div> <!-- modal register, end bracket mark -->
+
+
+    <!-- Optional JavaScript -->
+    <script src="javascript_file.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

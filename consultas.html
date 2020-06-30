@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+  </head>
+  <body onload="searching_users()">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item"> <!-- Registrate --> 
+                    <a class="nav-link" href="home.html">Registrarte <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active"> <!-- Login -->
+                    <a class="nav-link" href="home.html">Login <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Administrador de usuarios</a>
+                </li>  
+            </ul>
+        </div>
+    </nav>
+    <div class="m-3">
+        <!-- search navigation -->
+        <div class="m-4">
+        <div class="row">
+            <div class="col-8">
+                <input type="text"  class="form-control"  placeholder="nombre de usuario a buscar"/>
+                <small class="form-text text-muted">Buscar usuario</small>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-primary">Buscar</button>       
+            </div>
+        </div>
+        </div>
+        <!-- cards of users -->
+        <div id="users_list_page"></div>
+         <!--fin de cards of users -->
+        
+    
+    <!-- Modal Delete1 user-->
+    <div class="modal fade" id="delete_modal1" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¿Seguro que desea eliminar este usuario?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                    <h5 id="name_for_del"class="mt-0">Nombre</h5>
+                    <p id="email_for_del">example</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button onclick="deleteuser()"type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit -->
+    <div class="modal fade" id="editModalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edición de usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                        <form id="edit_form">
+                            <div class="row">
+                                <div class="col-6"> <!-- name -->
+                                    <label for="name"></label>
+                                    <input type="text" class="form-control" placeholder="Nombre" required>
+                                </div>
+                                <div class="col-6"> <!-- lastname -->
+                                    <label for="lastname"></label>
+                                    <input type="text" class="form-control" placeholder="Apellidos" required>
+                                </div>
+                            </div>
+                            <!-- email  -->
+                            <label for="email"></label>
+                            <input type="text" class="form-control" placeholder="Tu correo" id="email" disabled>
+                            <!-- password  -->
+                            <label for="password"></label>
+                            <input type="password" class="form-control" placeholder="Contraseña" required>
+                            <!-- Confirm password  -->
+                            <label for="confirm_password"></label>
+                            <input type="password" class="form-control" placeholder="Confirmar contraseña" required>
+                            <!-- Date  -->
+                            <label for="date"></label>
+                            <input type="date"  class="form-control" placeholder="01/01/2001"required>
+                            <!-- Gender -->
+                            <div class="card mt-3">
+                                <div class="card-body p-2">
+                                    <input type="radio" value="m" name="answer_gender" disabled> Hombre <br>
+                                    <input type="radio" value="f" name="answer_gender" disabled> Mujer <br> 
+                                </div>
+                            </div>
+                            <!-- Image url  -->
+                            <label for="img_pic"></label>
+                            <input type="url"  class="form-control" placeholder="url" required>
+                        </form>
+                </div> <!-- modal body end bracket -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button onclick="actualizar_usuario()" type="submit" class="btn btn-primary" form="edit_form">Actualizar</button>
+                </div>  <!-- modal footer end bracket mark -->
+            </div>
+        </div>
+    </div> <!-- modal edit, end bracket mark -->
+
+    <!-- Optional JavaScript -->
+    <script src="javascript_file.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
